@@ -6,4 +6,4 @@ Funcionalidade: Exemplo
 Cenario: Teste de Exemplo
 Dado que eu produzo uma mensagem
 Quando eu realizar o consumo dessa mensagem
-Então quero ver a idade de "34"
+Então quero ver a idade de "34" na mensagem consumida

@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class KafkaAvroJavaConsumerV1Demo {
 
-    public static void main() {
+    public static Customer main() {
         Properties properties = new Properties();
         // normal consumer
         properties.setProperty("bootstrap.servers","127.0.0.1:9092");
@@ -38,7 +38,12 @@ public class KafkaAvroJavaConsumerV1Demo {
 
             for (ConsumerRecord<String, Customer> record : records){
                 Customer customer = record.value();
-                System.out.println(customer);
+                if (customer != null){
+                    System.out.println("Lendo mensagem -> " + customer);
+                    kafkaConsumer.close();
+                    return customer;
+                }
+
             }
 
             kafkaConsumer.commitSync();

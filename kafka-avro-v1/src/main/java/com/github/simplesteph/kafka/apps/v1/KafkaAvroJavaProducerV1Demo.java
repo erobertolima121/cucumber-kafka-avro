@@ -38,7 +38,7 @@ public class KafkaAvroJavaProducerV1Demo {
                 topic, customer
         );
 
-        System.out.println(customer);
+        System.out.println("Produzindo a mensagem -> " + customer);
         producer.send(producerRecord, new Callback() {
             @Override
             public void onCompletion(RecordMetadata metadata, Exception exception) {
