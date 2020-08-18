@@ -8,7 +8,7 @@ import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 import org.junit.Assert;
 
-public class ExemploSteps extends KafkaAvroJavaConsumerV1Demo{
+public class ExemploSteps extends KafkaAvroJavaConsumerV1Demo {
 
     public Customer avroConsumido;
 
@@ -16,21 +16,16 @@ public class ExemploSteps extends KafkaAvroJavaConsumerV1Demo{
     public void produzir_evento_para_kafka() {
         KafkaAvroJavaProducerV1Demo producer = new KafkaAvroJavaProducerV1Demo();
         producer.main();
-        System.out.println("Dado");
     }
+
     @Quando("^eu realizar o consumo dessa mensagem$")
-    public void consumir_evento_para_kafka()
-    {
+    public void consumir_evento_para_kafka() {
         KafkaAvroJavaConsumerV1Demo consumer = new KafkaAvroJavaConsumerV1Demo();
-        avroConsumido = null;
         avroConsumido = consumer.main();
-        System.out.println("Quando -> " + avroConsumido);
     }
 
     @Então("^quero ver a idade de \"([^\"]*)\" na mensagem consumida$")
-    public void validar_idade_na_mensagem_consumida_kafka(int idade)
-    {
-        System.out.println("Então -> " + idade + avroConsumido);
-        Assert.assertEquals(idade,avroConsumido.getAge().intValue());
+    public void validar_idade_na_mensagem_consumida_kafka(int idade) {
+        Assert.assertEquals(idade, avroConsumido.getAge().intValue());
     }
 }
