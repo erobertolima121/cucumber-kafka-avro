@@ -1,8 +1,8 @@
 package Steps;
 
 import com.example.Customer;
-import com.github.simplesteph.kafka.apps.v1.KafkaAvroJavaConsumerV1Demo;
-import com.github.simplesteph.kafka.apps.v1.KafkaAvroJavaProducerV1Demo;
+import pageObjects.KafkaAvroJavaConsumerV1Demo;
+import pageObjects.KafkaAvroJavaProducerV1Demo;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
