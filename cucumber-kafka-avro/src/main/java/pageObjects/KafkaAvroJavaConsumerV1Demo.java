@@ -1,4 +1,4 @@
-package com.github.simplesteph.kafka.apps.v1;
+package pageObjects;
 
 import com.example.Customer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
@@ -13,14 +13,12 @@ import java.util.Properties;
 public class KafkaAvroJavaConsumerV1Demo {
 
     public static Customer main() {
+
         Properties properties = new Properties();
-        // normal consumer
-        properties.setProperty("bootstrap.servers","127.0.0.1:9092");
+        properties.setProperty("bootstrap.servers", "127.0.0.1:9092");
         properties.put("group.id", "customer-consumer-group-v1");
         properties.put("auto.commit.enable", "false");
         properties.put("auto.offset.reset", "earliest");
-
-        // avro part (deserializer)
         properties.setProperty("key.deserializer", StringDeserializer.class.getName());
         properties.setProperty("value.deserializer", KafkaAvroDeserializer.class.getName());
         properties.setProperty("schema.registry.url", "http://127.0.0.1:8085");
@@ -30,16 +28,12 @@ public class KafkaAvroJavaConsumerV1Demo {
         String topic = "customer-avro";
         kafkaConsumer.subscribe(Collections.singleton(topic));
 
-        System.out.println("Waiting for data...");
-
-        while (true){
-            System.out.println("Polling");
+        while (true) {
             ConsumerRecords<String, Customer> records = kafkaConsumer.poll(50);
 
-            for (ConsumerRecord<String, Customer> record : records){
+            for (ConsumerRecord<String, Customer> record : records) {
                 Customer customer = record.value();
-                if (customer != null){
-                    System.out.println("Lendo mensagem -> " + customer);
+                if (customer != null) {
                     kafkaConsumer.close();
                     return customer;
                 }
