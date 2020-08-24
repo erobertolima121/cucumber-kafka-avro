@@ -1,0 +1,84 @@
+{
+    "type": "record",
+    "name": "UsuarioProduto",
+    "namespace": "exemplo.aninhamento.array",
+    "fields": [
+        {
+            "name": "usuario",
+            "type": "string",
+            "default": "NONE"
+        },
+        {
+            "name": "idade",
+            "type": "int",
+            "default": -1
+        },
+        {
+            "name": "telefone",
+            "type": "string",
+            "default": "NONE"
+        },
+        {
+            "name": "numerocasa",
+            "type": "string",
+            "default": "NONE"
+        },
+        {
+            "name": "endereco",
+            "type": {
+                "type": "record",
+                "name": "endereco_cobranca",
+                "fields": [
+                    {
+                        "name": "rua",
+                        "type": "string",
+                        "default": "NONE"
+                    },
+                    {
+                        "name": "cidade",
+                        "type": "string",
+                        "default": "NONE"
+                    },
+                    {
+                        "name": "estado",
+                        "type": "string",
+                        "default": "NONE"
+                    },
+                    {
+                        "name": "pais",
+                        "type": "string",
+                        "default": "NONE"
+                    },
+                    {
+                        "name": "cep",
+                        "type": "string",
+                        "default": "NONE"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "produto",
+            "type": {
+                "type": "array",
+                "items": {
+                        "name": "itenscomprados",
+                        "type": "record",
+                        "fields":[
+                        {
+                        "name":"produto",
+                        "type":"string"
+                        }
+                        ]
+                    }
+                    },
+                    {
+                        "name": "valor",
+                        "type": "string",
+                        "default": "NONE"
+                    }
+            }
+        }
+        "default": {}
+    ]
+}

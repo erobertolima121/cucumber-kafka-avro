@@ -1,6 +1,6 @@
 package pageObjects;
 
-import com.example.Customer;
+import exemplo.aninhamento.informacaoUsuario;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -10,9 +10,9 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import java.util.Collections;
 import java.util.Properties;
 
-public class KafkaAvroJavaConsumerV1Demo {
+public class KafkaAvroJavaConsumerUsuario {
 
-    public static Customer main() {
+    public static informacaoUsuario main() {
 
         Properties properties = new Properties();
         properties.setProperty("bootstrap.servers", "127.0.0.1:9092");
@@ -24,18 +24,18 @@ public class KafkaAvroJavaConsumerV1Demo {
         properties.setProperty("schema.registry.url", "http://127.0.0.1:8085");
         properties.setProperty("specific.avro.reader", "true");
 
-        KafkaConsumer<String, Customer> kafkaConsumer = new KafkaConsumer<>(properties);
-        String topic = "customer-avro";
+        KafkaConsumer<String, informacaoUsuario> kafkaConsumer = new KafkaConsumer<>(properties);
+        String topic = "usuario-avro";
         kafkaConsumer.subscribe(Collections.singleton(topic));
 
         while (true) {
-            ConsumerRecords<String, Customer> records = kafkaConsumer.poll(50);
+            ConsumerRecords<String, informacaoUsuario> records = kafkaConsumer.poll(50);
             try {
-                for (ConsumerRecord<String, Customer> record : records) {
-                    Customer customer = record.value();
-                    if (customer != null) {
+                for (ConsumerRecord<String, informacaoUsuario> record : records) {
+                    informacaoUsuario usuario = record.value();
+                    if (usuario != null) {
                         kafkaConsumer.close();
-                        return customer;
+                        return usuario;
                     }
                 }
             } catch (Exception kafkaException) {
